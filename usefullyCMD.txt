@@ -1,0 +1,8 @@
+
+
+run it all attached
+java -javaagent:target/JavaAgent-1.0-SNAPSHOT-jar-with-dependencies.jar TestJavaClass > out.txt
+
+
+javac -d ./build *.java
+jar cvf BuboCache.jar *
