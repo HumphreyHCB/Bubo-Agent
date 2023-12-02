@@ -18,6 +18,14 @@
             <artifactId>javassist</artifactId>
             <version>${javassist.version}</version>
         </dependency>
+        <dependency>
+            <groupId>BuboCache</groupId>
+            <artifactId>BuboCache</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/BuboCache/build/BuboCache.jar</systemPath>
+        </dependency>
+        
     </dependencies>
 
 

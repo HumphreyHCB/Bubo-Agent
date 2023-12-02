@@ -1,5 +1,6 @@
 import java.lang.instrument.Instrumentation;
 import java.util.logging.Logger;
+import BuboCache.HumphreysCache;
 
 public class JavaAgent {
     private static final Logger log = Logger.getLogger(JavaAgent.class.getName());
@@ -15,8 +16,14 @@ public class JavaAgent {
     public static void premain(String agentArgs, Instrumentation instrumentation) throws InstantiationException {
 
         log.info("Starting Java Agent......");
-        InterceptingClassTransformer interceptingClassTransformer = new InterceptingClassTransformer();
-        interceptingClassTransformer.init();
-        instrumentation.addTransformer(interceptingClassTransformer);
+        
+        HumphreysCache t = new HumphreysCache();
+        t.start();
+        
+        //Thread printingHook = new Thread(() -> System.out.println(t.print()));
+        //Runtime.getRuntime().addShutdownHook(printingHook);
+        //InterceptingClassTransformer interceptingClassTransformer = new InterceptingClassTransformer();
+        //interceptingClassTransformer.init();
+        //instrumentation.addTransformer(interceptingClassTransformer);
     }
 }
