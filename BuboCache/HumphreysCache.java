@@ -8,7 +8,7 @@ public class HumphreysCache extends Thread {
         public static int pointer;
 
         public HumphreysCache() {
-                Buffer = new long[50];
+                Buffer = new long[3000000];
                 pointer = 0;
 
         }

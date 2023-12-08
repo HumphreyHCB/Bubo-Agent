@@ -11,6 +11,5 @@ public class TestJavaClass {
             System.out.println("DUm");
         }
 
-        HumphreysCache.print();
     }
 }

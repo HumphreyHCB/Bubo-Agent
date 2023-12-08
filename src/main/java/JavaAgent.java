@@ -20,8 +20,8 @@ public class JavaAgent {
         HumphreysCache t = new HumphreysCache();
         t.start();
         
-        //Thread printingHook = new Thread(() -> System.out.println(t.print()));
-        //Runtime.getRuntime().addShutdownHook(printingHook);
+        Thread printingHook = new Thread(() -> HumphreysCache.print());
+        Runtime.getRuntime().addShutdownHook(printingHook);
         //InterceptingClassTransformer interceptingClassTransformer = new InterceptingClassTransformer();
         //interceptingClassTransformer.init();
         //instrumentation.addTransformer(interceptingClassTransformer);
