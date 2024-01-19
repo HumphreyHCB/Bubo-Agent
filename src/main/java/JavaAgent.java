@@ -1,6 +1,7 @@
 import java.lang.instrument.Instrumentation;
 import java.util.logging.Logger;
-import BuboCache.HumphreysCache;
+import org.graalvm.compiler.hotspot.meta.BuboCache;
+
 
 public class JavaAgent {
     private static final Logger log = Logger.getLogger(JavaAgent.class.getName());
@@ -17,10 +18,10 @@ public class JavaAgent {
 
         log.info("Starting Java Agent......");
         
-        HumphreysCache t = new HumphreysCache();
+        BuboCache t = new BuboCache();
         t.start();
         
-        Thread printingHook = new Thread(() -> HumphreysCache.print());
+        Thread printingHook = new Thread(() -> BuboCache.print());
         Runtime.getRuntime().addShutdownHook(printingHook);
         //InterceptingClassTransformer interceptingClassTransformer = new InterceptingClassTransformer();
         //interceptingClassTransformer.init();

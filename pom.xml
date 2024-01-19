@@ -21,11 +21,11 @@
             <version>${javassist.version}</version>
         </dependency>
         <dependency>
-            <groupId>BuboCache</groupId>
+            <groupId>org.graalvm.compiler.hotspot.meta.BuboCache</groupId>
             <artifactId>BuboCache</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/BuboCache/build/BuboCache.jar</systemPath>
+            <systemPath>/home/hburchell/Repos/graal-dev/graal-instrumentation/compiler/mxbuild/dists/graal.jar</systemPath>
         </dependency>
         
     </dependencies>
@@ -34,7 +34,16 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+              <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -57,12 +66,17 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.4.1</version>
+                <executions>
+                  <execution>
+                    <phase>package</phase>
+                    <goals>
+                      <goal>shade</goal>
+                    </goals>
+                  </execution>
+                </executions>
+              </plugin>
         </plugins>
     </build>
 

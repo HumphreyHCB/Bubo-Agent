@@ -1,5 +1,6 @@
 # Bubo-Agent
 
+this required a refence to the graal jar, see the pom.xml for the hackey
 
 
 
