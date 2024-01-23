@@ -1,6 +1,6 @@
 import java.lang.instrument.Instrumentation;
 import java.util.logging.Logger;
-import org.graalvm.compiler.hotspot.meta.BuboCache;
+import org.graalvm.compiler.hotspot.meta.Bubo.BuboCache;
 
 
 public class JavaAgent {
