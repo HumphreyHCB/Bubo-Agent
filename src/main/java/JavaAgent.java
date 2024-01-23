@@ -1,6 +1,9 @@
 import java.lang.instrument.Instrumentation;
 import java.util.logging.Logger;
 import org.graalvm.compiler.hotspot.meta.Bubo.BuboCache;
+import org.graalvm.compiler.hotspot.meta.Bubo.BuboDataReader;
+import org.graalvm.compiler.hotspot.meta.Bubo.BuboPrinter;
+import org.graalvm.compiler.hotspot.meta.Bubo.BuboWriter;
 
 
 public class JavaAgent {
@@ -21,8 +24,14 @@ public class JavaAgent {
         BuboCache t = new BuboCache();
         t.start();
         
-        Thread printingHook = new Thread(() -> BuboCache.print());
-        Runtime.getRuntime().addShutdownHook(printingHook);
+        // Thread printingHook = new Thread(() -> BuboCache.print());
+        // Runtime.getRuntime().addShutdownHook(printingHook);
+
+        Thread writingHook = new Thread(() -> BuboPrinter.printPercentageBar(BuboPrinter.orderDataByTime(BuboDataReader.convertToHashMap(t.Buffer, t.pointer))));
+        Runtime.getRuntime().addShutdownHook(writingHook);
+
+
+
         //InterceptingClassTransformer interceptingClassTransformer = new InterceptingClassTransformer();
         //interceptingClassTransformer.init();
         //instrumentation.addTransformer(interceptingClassTransformer);
