@@ -4,6 +4,7 @@ import org.graalvm.compiler.hotspot.meta.Bubo.BuboCache;
 import org.graalvm.compiler.hotspot.meta.Bubo.BuboDataReader;
 import org.graalvm.compiler.hotspot.meta.Bubo.BuboPrinter;
 import org.graalvm.compiler.hotspot.meta.Bubo.BuboWriter;
+import org.graalvm.compiler.hotspot.meta.Bubo.BuboMethodCache;
 
 
 public class JavaAgent {
@@ -21,13 +22,15 @@ public class JavaAgent {
 
         log.info("Starting Java Agent......");
         
-        BuboCache t = new BuboCache();
-        t.start();
+        BuboCache timeCache = new BuboCache();
+        timeCache.start();
         
+        BuboMethodCache methodCache= new BuboMethodCache();
+        methodCache.start();
         // Thread printingHook = new Thread(() -> BuboCache.print());
         // Runtime.getRuntime().addShutdownHook(printingHook);
 
-        Thread writingHook = new Thread(() -> BuboPrinter.printPercentageBar(BuboPrinter.orderDataByTime(BuboDataReader.convertToHashMap(t.Buffer, t.pointer))));
+        Thread writingHook = new Thread(() -> BuboPrinter.printPercentageBar(BuboPrinter.orderDataByTime(BuboDataReader.convertToHashMap(timeCache.Buffer, timeCache.pointer)), methodCache.Buffer));
         Runtime.getRuntime().addShutdownHook(writingHook);
 
 
