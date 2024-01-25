@@ -30,7 +30,7 @@ public class JavaAgent {
         // Thread printingHook = new Thread(() -> BuboCache.print());
         // Runtime.getRuntime().addShutdownHook(printingHook);
 
-        Thread writingHook = new Thread(() -> BuboPrinter.printPercentageBar(BuboPrinter.orderDataByTime(BuboDataReader.convertToHashMap(timeCache.Buffer, timeCache.pointer)), methodCache.Buffer));
+        Thread writingHook = new Thread(() -> BuboPrinter.printPercentageBar(BuboPrinter.orderDataByTime(BuboDataReader.convertToHashMap(timeCache.Buffer, timeCache.pointer)), methodCache.getBuffer()));
         Runtime.getRuntime().addShutdownHook(writingHook);
 
 
