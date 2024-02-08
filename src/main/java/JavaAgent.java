@@ -20,7 +20,7 @@ public class JavaAgent {
      */
     public static void premain(String agentArgs, Instrumentation instrumentation) throws InstantiationException {
 
-        log.info("Starting Java Agent......");
+        log.info("Starting Bubo Agent......");
         
         BuboCache timeCache = new BuboCache();
         timeCache.start();
@@ -30,7 +30,14 @@ public class JavaAgent {
         // Thread printingHook = new Thread(() -> BuboCache.print());
         // Runtime.getRuntime().addShutdownHook(printingHook);
 
-        Thread writingHook = new Thread(() -> BuboPrinter.printPercentageBar(BuboPrinter.orderDataByTime(BuboDataReader.convertToHashMap(timeCache.BufferArray, timeCache.pointer, timeCache.BufferPointer)), methodCache.getBuffer()));
+        Thread writingHook = new Thread(() -> {
+            System.out.println("Starting Printing ... ( May take a few seconds)");
+            System.out.println("Debug :");
+            System.out.println("Buffer Pointer :" + timeCache.BufferPointer);
+            System.out.println("Pointer :" + timeCache.pointer);
+            BuboPrinter.printPercentageBar(BuboPrinter.orderDataByTime(BuboDataReader.convertToHashMap(timeCache.BufferArray, timeCache.pointer, timeCache.BufferPointer)), methodCache.getBuffer());
+            System.out.println("Bubo Agent Sutting Down......");
+    });
         Runtime.getRuntime().addShutdownHook(writingHook);
 
 
