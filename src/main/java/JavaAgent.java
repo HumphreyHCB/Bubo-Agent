@@ -33,9 +33,11 @@ public class JavaAgent {
         Thread writingHook = new Thread(() -> {
             System.out.println("Starting Printing ... ( May take a few seconds)");
             System.out.println("Debug :");
-            System.out.println("Buffer Pointer :" + timeCache.BufferPointer);
-            System.out.println("Pointer :" + timeCache.pointer);
-            BuboPrinter.printPercentageBar(BuboPrinter.orderDataByTime(BuboDataReader.convertToHashMap(timeCache.BufferArray, timeCache.pointer, timeCache.BufferPointer)), methodCache.getBuffer());
+            System.out.println("Buffer Pointer :" + BuboCache.BufferPointer);
+            System.out.println("Pointer :" + BuboCache.pointer);
+            String filename = "out.txt";
+            BuboDataReader.DumpToFile(BuboCache.BufferArray, BuboCache.pointer, BuboCache.BufferPointer, filename);
+            //BuboPrinter.printPercentageBar(BuboPrinter.orderDataByTime(BuboDataReader.convertToHashMap(BuboMethodCache.BufferArray, BuboMethodCache.pointer, BuboMethodCache.BufferPointer)), BuboMethodCache.getBuffer());
             System.out.println("Bubo Agent Sutting Down......");
     });
         Runtime.getRuntime().addShutdownHook(writingHook);
