@@ -27,16 +27,27 @@ public class JavaAgent {
         
         BuboMethodCache methodCache= new BuboMethodCache();
         methodCache.start();
+        long startTime = System.currentTimeMillis();
         // Thread printingHook = new Thread(() -> BuboCache.print());
         // Runtime.getRuntime().addShutdownHook(printingHook);
 
         Thread writingHook = new Thread(() -> {
+            try {
+                timeCache.join();
+                methodCache.join();
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            
+            long endTime = System.currentTimeMillis();
             System.out.println("Starting Printing ... ( May take a few seconds)");
-            System.out.println("Debug :");
-            System.out.println("Buffer Pointer :" + BuboCache.BufferPointer);
-            System.out.println("Pointer :" + BuboCache.pointer);
-            String filename = "out.txt";
-            BuboDataReader.DumpToFile(BuboCache.BufferArray, BuboCache.pointer, BuboCache.BufferPointer, filename);
+            //System.out.println("Debug :");
+            //System.out.println("Buffer Pointer :" + BuboCache.BufferPointer);
+            //System.out.println("Pointer :" + BuboCache.pointer);
+            BuboPrinter.printPercentageBar(BuboCache.Buffer, BuboMethodCache.getBuffer(), endTime - startTime );
+            //String filename = "out.txt";
+            //BuboDataReader.DumpToFile(BuboCache.BufferArray, BuboCache.pointer, BuboCache.BufferPointer, filename);
             //BuboPrinter.printPercentageBar(BuboPrinter.orderDataByTime(BuboDataReader.convertToHashMap(BuboMethodCache.BufferArray, BuboMethodCache.pointer, BuboMethodCache.BufferPointer)), BuboMethodCache.getBuffer());
             System.out.println("Bubo Agent Sutting Down......");
     });
