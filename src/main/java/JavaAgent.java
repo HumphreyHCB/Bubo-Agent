@@ -25,8 +25,9 @@ public class JavaAgent {
         BuboCache timeCache = new BuboCache();
         timeCache.start();
         
-        BuboMethodCache methodCache= new BuboMethodCache();
+        BuboMethodCache methodCache = new BuboMethodCache();
         methodCache.start();
+
         long startTime = System.currentTimeMillis();
         // Thread printingHook = new Thread(() -> BuboCache.print());
         // Runtime.getRuntime().addShutdownHook(printingHook);
@@ -42,11 +43,19 @@ public class JavaAgent {
             
             long endTime = System.currentTimeMillis();
             //System.out.println("Starting Printing ... ( May take a few seconds)");
-            System.out.println("Debug :");
+            //System.out.println("Debug :");
             //System.out.println("Buffer Pointer :" + BuboCache.BufferPointer);
             //System.out.println("Pointer :" + BuboCache.pointer);
-            //System.out.println("We have made the aray be and INt, so PRITNING IS oFFF");
-            BuboPrinter.printPercentageBar(BuboCache.Buffer, BuboMethodCache.getBuffer(), endTime - startTime );
+            // System.out.println("The value in the array at 1 is :" + BuboCache.Buffer[1]);
+            // System.out.println("The value in the array at 2 is :" + BuboCache.Buffer[2]);
+            // System.out.println("We have made the aray be and INt, so PRITNING IS oFFF");
+            // if (BuboMethodCache.pointer == 0) {
+            //     System.out.println("Method Cache is empty, did you forget to enable the profiler");
+            //     System.out.println("Add the follwoing command : -Dgraal.EnableProfiler=true ");
+            // }
+            // else{
+             BuboPrinter.printPercentageBar(BuboCache.Buffer, BuboMethodCache.getBuffer(), endTime - startTime );
+            // }
             //String filename = "out.txt";
             //BuboDataReader.DumpToFile(BuboCache.BufferArray, BuboCache.pointer, BuboCache.BufferPointer, filename);
             //BuboPrinter.printPercentageBar(BuboPrinter.orderDataByTime(BuboDataReader.convertToHashMap(BuboMethodCache.BufferArray, BuboMethodCache.pointer, BuboMethodCache.BufferPointer)), BuboMethodCache.getBuffer());
