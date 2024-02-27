@@ -53,7 +53,7 @@
   </build>
   <dependencies>
     <dependency>
-      <groupId>org.graalvm.compiler.hotspot.meta.BuboCache</groupId>
+      <groupId>jdk.graal.compiler.hotspot.meta.BuboCache</groupId>
       <artifactId>BuboCache</artifactId>
       <version>1.0</version>
       <scope>system</scope>
@@ -61,9 +61,10 @@
     </dependency>
   </dependencies>
   <properties>
-    <maven.compiler.target>17</maven.compiler.target>
-    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <maven.compiler.source>21</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.compilerVersion>21</maven.compiler.compilerVersion>
     <javassist.version>3.26.0-GA</javassist.version>
   </properties>
 </project>

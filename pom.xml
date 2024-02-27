@@ -21,7 +21,7 @@
             <version>${javassist.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.graalvm.compiler.hotspot.meta.BuboCache</groupId>
+            <groupId>jdk.graal.compiler.hotspot.meta.BuboCache</groupId>
             <artifactId>BuboCache</artifactId>
             <version>1.0</version>
             <scope>system</scope>
@@ -83,7 +83,8 @@
     <properties>
         <javassist.version>3.26.0-GA</javassist.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>    
+        <maven.compiler.target>21</maven.compiler.target>    
+        <maven.compiler.compilerVersion>21</maven.compiler.compilerVersion>    
     </properties>
 </project>

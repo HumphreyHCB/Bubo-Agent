@@ -1,10 +1,10 @@
 import java.lang.instrument.Instrumentation;
 import java.util.logging.Logger;
-import org.graalvm.compiler.hotspot.meta.Bubo.BuboCache;
-import org.graalvm.compiler.hotspot.meta.Bubo.BuboDataReader;
-import org.graalvm.compiler.hotspot.meta.Bubo.BuboPrinter;
-import org.graalvm.compiler.hotspot.meta.Bubo.BuboWriter;
-import org.graalvm.compiler.hotspot.meta.Bubo.BuboMethodCache;
+import jdk.graal.compiler.hotspot.meta.Bubo.BuboCache;
+import jdk.graal.compiler.hotspot.meta.Bubo.BuboDataReader;
+import jdk.graal.compiler.hotspot.meta.Bubo.BuboPrinter;
+import jdk.graal.compiler.hotspot.meta.Bubo.BuboWriter;
+import jdk.graal.compiler.hotspot.meta.Bubo.BuboMethodCache;
 
 
 public class JavaAgent {
