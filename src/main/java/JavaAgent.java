@@ -49,13 +49,23 @@ public class JavaAgent {
             // System.out.println("The value in the array at 1 is :" + BuboCache.Buffer[1]);
             // System.out.println("The value in the array at 2 is :" + BuboCache.Buffer[2]);
             // System.out.println("We have made the aray be and INt, so PRITNING IS oFFF");
-            // if (BuboMethodCache.pointer == 0) {
-            //     System.out.println("Method Cache is empty, did you forget to enable the profiler");
-            //     System.out.println("Add the follwoing command : -Dgraal.EnableProfiler=true ");
-            // }
-            // else{
+            if (BuboMethodCache.pointer == 0) {
+                System.out.println("Method Cache is empty, did you forget to enable the profiler");
+                System.out.println("Add the follwoing command : -Dgraal.EnableProfiler=true ");
+                boolean didSOmthing = false;
+                for (int i = 0; i < 1000; i++) {
+                    if (BuboCache.Buffer[i] > 0) {
+                        didSOmthing = true;
+                    }
+                }
+                if (didSOmthing) {
+                    System.out.println("We did find at least one method entry in the raw cache; therefore, something was recorded, but we don't know which method it belongs to.");
+                }
+                
+            }
+            else{
              BuboPrinter.printPercentageBar(BuboCache.Buffer, BuboMethodCache.getBuffer(), endTime - startTime );
-            // }
+             }
             //String filename = "out.txt";
             //BuboDataReader.DumpToFile(BuboCache.BufferArray, BuboCache.pointer, BuboCache.BufferPointer, filename);
             //BuboPrinter.printPercentageBar(BuboPrinter.orderDataByTime(BuboDataReader.convertToHashMap(BuboMethodCache.BufferArray, BuboMethodCache.pointer, BuboMethodCache.BufferPointer)), BuboMethodCache.getBuffer());
