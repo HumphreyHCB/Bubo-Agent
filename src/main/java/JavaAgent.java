@@ -42,13 +42,7 @@ public class JavaAgent {
             }
             
             long endTime = System.currentTimeMillis();
-            //System.out.println("Starting Printing ... ( May take a few seconds)");
-            //System.out.println("Debug :");
-            //System.out.println("Buffer Pointer :" + BuboCache.BufferPointer);
-            //System.out.println("Pointer :" + BuboCache.pointer);
-            // System.out.println("The value in the array at 1 is :" + BuboCache.Buffer[1]);
-            // System.out.println("The value in the array at 2 is :" + BuboCache.Buffer[2]);
-            // System.out.println("We have made the aray be and INt, so PRITNING IS oFFF");
+
             if (BuboMethodCache.pointer == 0) {
                 System.out.println("Method Cache is empty, did you forget to enable the profiler");
                 System.out.println("Add the follwoing command : -Dgraal.EnableProfiler=true ");
@@ -75,8 +69,5 @@ public class JavaAgent {
 
 
 
-        //InterceptingClassTransformer interceptingClassTransformer = new InterceptingClassTransformer();
-        //interceptingClassTransformer.init();
-        //instrumentation.addTransformer(interceptingClassTransformer);
     }
 }
