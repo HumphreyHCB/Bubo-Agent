@@ -41,30 +41,29 @@ public class JavaAgent {
                 e.printStackTrace();
             }
             
-            long endTime = System.currentTimeMillis();
+            // long endTime = System.currentTimeMillis();
 
-            if (BuboMethodCache.pointer == 0) {
-                System.out.println("Method Cache is empty, did you forget to enable the profiler");
-                System.out.println("Add the follwoing command : -Dgraal.EnableProfiler=true ");
-                boolean didSOmthing = false;
-                for (int i = 0; i < 1000; i++) {
-                    if (BuboCache.Buffer[i] > 0) {
-                        didSOmthing = true;
-                    }
-                }
-                if (didSOmthing) {
-                    System.out.println("We did find at least one method entry in the raw cache; therefore, something was recorded, but we don't know which method it belongs to.");
-                }
+            // if (BuboMethodCache.pointer == 0) {
+            //     System.out.println("Method Cache is empty, did you forget to enable the profiler");
+            //     System.out.println("Add the follwoing command : -Dgraal.EnableProfiler=true ");
+            //     boolean didSOmthing = false;
+            //     for (int i = 0; i < 1000; i++) {
+            //         if (BuboCache.Buffer[i] > 0) {
+            //             didSOmthing = true;
+            //         }
+            //     }
+            //     if (didSOmthing) {
+            //         System.out.println("We did find at least one method entry in the raw cache; therefore, something was recorded, but we don't know which method it belongs to.");
+            //     }
                 
-            }
-            else{
-             //BuboPrinter.printPercentageBar(BuboCache.Buffer, BuboMethodCache.getBuffer(), endTime - startTime );
-             BuboPrinter.printMultiBufferDebug(BuboCache.TimeBuffer,BuboCache.ActivationCountBuffer,BuboCache.CyclesBuffer, BuboMethodCache.getBuffer());
-             }
-            //String filename = "out.txt";
-            //BuboDataReader.DumpToFile(BuboCache.BufferArray, BuboCache.pointer, BuboCache.BufferPointer, filename);
-            //BuboPrinter.printPercentageBar(BuboPrinter.orderDataByTime(BuboDataReader.convertToHashMap(BuboMethodCache.BufferArray, BuboMethodCache.pointer, BuboMethodCache.BufferPointer)), BuboMethodCache.getBuffer());
-            //System.out.println("Bubo Agent Sutting Down......");
+            // }
+            // else{
+            //  //BuboPrinter.printPercentageBar(BuboCache.Buffer, BuboMethodCache.getBuffer(), endTime - startTime );
+            //  BuboPrinter.printMultiBufferDebug(BuboCache.TimeBuffer,BuboCache.ActivationCountBuffer,BuboCache.CyclesBuffer, BuboMethodCache.getBuffer());
+            //  }
+
+            BuboPrinter.addToFile("VisualVM Run Count : " + BuboMethodCache.getBuffer().size());
+            System.out.println("Bubo Agent Sutting Down......");
     });
         Runtime.getRuntime().addShutdownHook(writingHook);
 
