@@ -33,6 +33,7 @@ public class JavaAgent {
         // Runtime.getRuntime().addShutdownHook(printingHook);
 
         Thread writingHook = new Thread(() -> {
+            System.out.println("Bubo Agent Joining......");
             try {
                 timeCache.join();
                 methodCache.join();
@@ -40,7 +41,7 @@ public class JavaAgent {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            
+            System.out.println("Bubo Agent Starting Printing......");
             // long endTime = System.currentTimeMillis();
 
             // if (BuboMethodCache.pointer == 0) {
