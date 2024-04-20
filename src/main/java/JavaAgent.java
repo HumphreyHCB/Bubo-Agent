@@ -20,13 +20,33 @@ public class JavaAgent {
      */
     public static void premain(String agentArgs, Instrumentation instrumentation) throws InstantiationException {
 
-        log.info("Starting Bubo Agent......");
+        System.out.println("Starting Bubo Agent......");
         
         BuboCache timeCache = new BuboCache();
         timeCache.start();
-        
+        // try {
+        // while(timeCache.pointer != 1){
+        //     Thread.sleep(100);
+        // }
+        // System.out.println("Time Cache Ready");
+        // } catch (InterruptedException e) {
+        //     // TODO Auto-generated catch block
+        //     e.printStackTrace();
+        // }
+
         BuboMethodCache methodCache = new BuboMethodCache();
         methodCache.start();
+
+        // try {
+        // while(methodCache.pointer != 0){
+        //     Thread.sleep(100);
+        // }
+        // System.out.println("method Cache Ready");
+        // } catch (InterruptedException e) {
+        //     // TODO Auto-generated catch block
+        //     e.printStackTrace();
+        // }
+
 
         long startTime = System.currentTimeMillis();
         // Thread printingHook = new Thread(() -> BuboCache.print());
@@ -44,26 +64,26 @@ public class JavaAgent {
             System.out.println("Bubo Agent Starting Printing......");
             // long endTime = System.currentTimeMillis();
 
-            // if (BuboMethodCache.pointer == 0) {
-            //     System.out.println("Method Cache is empty, did you forget to enable the profiler");
-            //     System.out.println("Add the follwoing command : -Dgraal.EnableProfiler=true ");
-            //     boolean didSOmthing = false;
-            //     for (int i = 0; i < 1000; i++) {
-            //         if (BuboCache.Buffer[i] > 0) {
-            //             didSOmthing = true;
-            //         }
-            //     }
-            //     if (didSOmthing) {
-            //         System.out.println("We did find at least one method entry in the raw cache; therefore, something was recorded, but we don't know which method it belongs to.");
-            //     }
+            if (BuboMethodCache.pointer == 0) {
+                System.out.println("Method Cache is empty, did you forget to enable the profiler");
+                System.out.println("Add the follwoing command : -Dgraal.EnableProfiler=true ");
+                boolean didSOmthing = false;
+                for (int i = 0; i < 1000; i++) {
+                    if (BuboCache.Buffer[i] > 0) {
+                        didSOmthing = true;
+                    }
+                }
+                if (didSOmthing) {
+                    System.out.println("We did find at least one method entry in the raw cache; therefore, something was recorded, but we don't know which method it belongs to.");
+                }
                 
-            // }
-            // else{
-            //  //BuboPrinter.printPercentageBar(BuboCache.Buffer, BuboMethodCache.getBuffer(), endTime - startTime );
-            //  BuboPrinter.printMultiBufferDebug(BuboCache.TimeBuffer,BuboCache.ActivationCountBuffer,BuboCache.CyclesBuffer, BuboMethodCache.getBuffer());
-            //  }
+            }
+            else{
+             //BuboPrinter.printPercentageBar(BuboCache.Buffer, BuboMethodCache.getBuffer(), endTime - startTime );
+             BuboPrinter.printMultiBufferDebug(BuboCache.TimeBuffer,BuboCache.ActivationCountBuffer,BuboCache.CyclesBuffer, BuboMethodCache.getBuffer(), agentArgs);
+             }
 
-            BuboPrinter.addToFile("VisualVM Run Count : " + BuboMethodCache.getBuffer().size());
+            //BuboPrinter.addToFile("VisualVM Run Count : " + BuboMethodCache.getBuffer().size());
             System.out.println("Bubo Agent Sutting Down......");
     });
         Runtime.getRuntime().addShutdownHook(writingHook);
