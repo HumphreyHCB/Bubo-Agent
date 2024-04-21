@@ -5,6 +5,7 @@ import jdk.graal.compiler.hotspot.meta.Bubo.BuboDataReader;
 import jdk.graal.compiler.hotspot.meta.Bubo.BuboPrinter;
 import jdk.graal.compiler.hotspot.meta.Bubo.BuboWriter;
 import jdk.graal.compiler.hotspot.meta.Bubo.BuboMethodCache;
+import jdk.graal.compiler.hotspot.meta.Bubo.BuboCompUnitCache;
 
 
 public class JavaAgent {
@@ -37,6 +38,9 @@ public class JavaAgent {
         BuboMethodCache methodCache = new BuboMethodCache();
         methodCache.start();
 
+        BuboCompUnitCache compunitCache = new BuboCompUnitCache();
+        compunitCache.start();
+
         // try {
         // while(methodCache.pointer != 0){
         //     Thread.sleep(100);
@@ -57,6 +61,7 @@ public class JavaAgent {
             try {
                 timeCache.join();
                 methodCache.join();
+                compunitCache.join();
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -80,8 +85,9 @@ public class JavaAgent {
             }
             else{
              //BuboPrinter.printPercentageBar(BuboCache.Buffer, BuboMethodCache.getBuffer(), endTime - startTime );
-             BuboPrinter.printMultiBufferDebug(BuboCache.TimeBuffer,BuboCache.ActivationCountBuffer,BuboCache.CyclesBuffer, BuboMethodCache.getBuffer(), agentArgs);
-             }
+             //BuboPrinter.printMultiBufferDebug(BuboCache.TimeBuffer,BuboCache.ActivationCountBuffer,BuboCache.CyclesBuffer, BuboMethodCache.getBuffer(), agentArgs);
+             BuboPrinter.printCompUnit(BuboCache.TimeBuffer,BuboCache.ActivationCountBuffer,BuboCache.CyclesBuffer, BuboMethodCache.getBuffer(), agentArgs, compunitCache.Buffer); 
+            }
 
             //BuboPrinter.addToFile("VisualVM Run Count : " + BuboMethodCache.getBuffer().size());
             System.out.println("Bubo Agent Sutting Down......");
