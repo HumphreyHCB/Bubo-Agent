@@ -25,15 +25,6 @@ public class JavaAgent {
         
         BuboCache timeCache = new BuboCache();
         timeCache.start();
-        // try {
-        // while(timeCache.pointer != 1){
-        //     Thread.sleep(100);
-        // }
-        // System.out.println("Time Cache Ready");
-        // } catch (InterruptedException e) {
-        //     // TODO Auto-generated catch block
-        //     e.printStackTrace();
-        // }
 
         BuboMethodCache methodCache = new BuboMethodCache();
         methodCache.start();
@@ -41,20 +32,9 @@ public class JavaAgent {
         BuboCompUnitCache compunitCache = new BuboCompUnitCache();
         compunitCache.start();
 
-        // try {
-        // while(methodCache.pointer != 0){
-        //     Thread.sleep(100);
-        // }
-        // System.out.println("method Cache Ready");
-        // } catch (InterruptedException e) {
-        //     // TODO Auto-generated catch block
-        //     e.printStackTrace();
-        // }
 
 
         long startTime = System.currentTimeMillis();
-        // Thread printingHook = new Thread(() -> BuboCache.print());
-        // Runtime.getRuntime().addShutdownHook(printingHook);
 
         Thread writingHook = new Thread(() -> {
             System.out.println("Bubo Agent Joining......");
@@ -86,7 +66,7 @@ public class JavaAgent {
             else{
              //BuboPrinter.printPercentageBar(BuboCache.Buffer, BuboMethodCache.getBuffer(), endTime - startTime );
              //BuboPrinter.printMultiBufferDebug(BuboCache.TimeBuffer,BuboCache.ActivationCountBuffer,BuboCache.CyclesBuffer, BuboMethodCache.getBuffer(), agentArgs);
-             BuboPrinter.printCompUnit(BuboCache.TimeBuffer,BuboCache.ActivationCountBuffer,BuboCache.CyclesBuffer, BuboMethodCache.getBuffer(), agentArgs, compunitCache.Buffer); 
+             BuboPrinter.printCompUnit(BuboCache.TimeBuffer,BuboCache.ActivationCountBuffer,BuboCache.CyclesBuffer, BuboMethodCache.getBuffer(), compunitCache.Buffer); 
             }
 
             //BuboPrinter.addToFile("VisualVM Run Count : " + BuboMethodCache.getBuffer().size());
