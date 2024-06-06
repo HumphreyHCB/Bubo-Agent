@@ -61,11 +61,14 @@ public class JavaAgent {
                 
             // }
             // else{
-                for (int i = 0; i < BuboCache.TimeBuffer.length; i++) {
-                    if (BuboCache.TimeBuffer[i] != 0) {
-                        System.out.println("Method Id : " + i + " AMOUNT : " + BuboCache.TimeBuffer[i]);
-                    }
+            System.out.println("Bubo Agent Starting Printing......");
+            for (int i = 0; i < BuboCache.TimeBuffer.length; i++) {
+                if (BuboCache.TimeBuffer[i] != 0) {
+                    System.out.println("Method Id : " + i + " AMOUNT : " + BuboCache.TimeBuffer[i]);
                 }
+            }
+            System.out.println("Method CchAE POINTER IS AT : " + BuboMethodCache.pointer);
+            System.out.println("Compunit CchAE IS AT : " + BuboCompUnitCache.Buffer.size());
              //BuboPrinter.printPercentageBar(BuboCache.Buffer, BuboMethodCache.getBuffer(), endTime - startTime );
              //BuboPrinter.printMultiBufferDebug(BuboCache.TimeBuffer,BuboCache.ActivationCountBuffer,BuboCache.CyclesBuffer, BuboMethodCache.getBuffer(), agentArgs);
              ///BuboPrinter.printCompUnit(BuboCache.TimeBuffer,BuboCache.ActivationCountBuffer,BuboCache.CyclesBuffer, BuboMethodCache.getBuffer(), agentArgs, BuboCompUnitCache.Buffer);
