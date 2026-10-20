@@ -25,7 +25,7 @@
             <artifactId>BuboCache</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>/home/hburchell/Repos/graal-dev/graal-instrumentation/compiler/mxbuild/dists/graal.jar</systemPath>
+            <systemPath>${graal.jar}</systemPath>
         </dependency>
         
     </dependencies>
@@ -81,6 +81,8 @@
     </build>
 
     <properties>
+        <!-- Supplied by GT-Ecosystem after the Graal build has produced graal.jar. -->
+        <graal.jar>${env.GT_GRAAL_JAR}</graal.jar>
         <javassist.version>3.26.0-GA</javassist.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>    
